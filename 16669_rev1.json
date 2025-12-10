@@ -1,0 +1,459 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_JSON_API",
+      "label": "JSON API",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.0.5"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.1"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "${DS_JSON_API}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "${DS_JSON_API}"
+          },
+          "decimalSeparator": ".",
+          "delimiter": ",",
+          "fields": [
+            {
+              "jsonPath": "$.feeds[*].created_at",
+              "name": "TIME",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.feeds[*].field2",
+              "language": "jsonpath",
+              "name": "Temperature  °C",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field3",
+              "language": "jsonpath",
+              "name": "Humidity %",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field4",
+              "language": "jsonpath",
+              "name": "Air Pressure ",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field5",
+              "language": "jsonpath",
+              "name": "Air Quality ppm",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field6",
+              "language": "jsonpath",
+              "name": "Sun Light Intensity",
+              "type": "number"
+            }
+          ],
+          "header": true,
+          "hide": false,
+          "ignoreUnknown": false,
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "schema": [
+            {
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "skipRows": 0,
+          "urlPath": ""
+        }
+      ],
+      "title": "CUBESAT READINGS",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "${DS_JSON_API}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "${DS_JSON_API}"
+          },
+          "decimalSeparator": ".",
+          "delimiter": ",",
+          "fields": [
+            {
+              "jsonPath": "$.feeds[*].created_at",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.feeds[*].field2",
+              "language": "jsonpath",
+              "name": "Temperature",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field3",
+              "language": "jsonpath",
+              "name": "Humidity",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field4",
+              "language": "jsonpath",
+              "name": "Air Pressure",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field5",
+              "language": "jsonpath",
+              "name": "Air Quality",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field6",
+              "language": "jsonpath",
+              "name": "Sun Light Intensity",
+              "type": "number"
+            }
+          ],
+          "header": true,
+          "hide": false,
+          "ignoreUnknown": false,
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "schema": [
+            {
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "skipRows": 0,
+          "urlPath": ""
+        }
+      ],
+      "title": "CUBESAT READINGS",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "${DS_JSON_API}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "maxDataPoints": 1,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.0.5",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "${DS_JSON_API}"
+          },
+          "decimalSeparator": ".",
+          "delimiter": ",",
+          "fields": [
+            {
+              "jsonPath": "$.feeds[*].created_at",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.feeds[*].field2",
+              "language": "jsonpath",
+              "name": "Temperature",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field3",
+              "language": "jsonpath",
+              "name": "Humidity",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field4",
+              "language": "jsonpath",
+              "name": "Air Pressure",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field5",
+              "language": "jsonpath",
+              "name": "Air Quality",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.feeds[*].field6",
+              "language": "jsonpath",
+              "name": "Sun Light Intensity",
+              "type": "number"
+            }
+          ],
+          "header": true,
+          "hide": false,
+          "ignoreUnknown": false,
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "schema": [
+            {
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "skipRows": 0,
+          "urlPath": ""
+        }
+      ],
+      "title": "CUBESAT READINGS",
+      "transparent": true,
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "CUBESAT",
+  "uid": "hB6AT5k4k",
+  "version": 9,
+  "weekStart": "",
+  "gnetId": 16669,
+  "description": "CUBESAT"
+}
